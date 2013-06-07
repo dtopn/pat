@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <map>
+#include <cstdio>
 
 using namespace std;
 
@@ -36,7 +37,7 @@ int main () {
 			cout << num; first = 0;
 		}
 		if (iter->second != 0) {
-			cout << ' ' << iter->first << ' ' << iter->second;
+			cout << ' ' << iter->first << ' ' << printf("%.1f",iter->second);
 		}
 	}
 
