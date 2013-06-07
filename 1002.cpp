@@ -23,14 +23,21 @@ int main () {
 		cin >> expo >> coef;
 		out[expo] += coef;
 	}
-	int num = out.size();
+	int num = 0;
 	map<int, float>::reverse_iterator iter;
+	for (iter = out.rbegin(); iter != out.rend(); iter++) {
+		if (iter->second != 0) {
+			num += 1;
+		}
+	}
 	int first = 1;
 	for (iter = out.rbegin(); iter != out.rend(); iter++) {
 		if (first) {
 			cout << num; first = 0;
 		}
-		cout << ' ' << iter->first << ' ' << iter->second;
+		if (iter->second != 0) {
+			cout << ' ' << iter->first << ' ' << iter->second;
+		}
 	}
 
 	return 0;
