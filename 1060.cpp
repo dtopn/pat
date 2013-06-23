@@ -7,18 +7,19 @@ using namespace std;
 
 int main() {
 	int sign; cin >> sign;
+
 	double a, b;
+
 	int apow, bpow;
+	apow = bpow = 0;
+
 	stringstream stg1, stg2;
 	string str1, str2;
+
 	cin >> str1 >> str2;
-	stg1 << str1;
-	stg2 << str2;
-	stringstream stg;
-	str1 = stg1.str();
-	str2 = stg2.str();
-	apow = bpow = 0;
+	stg1 << str1; stg2 << str2;
 	stg1 >> a; stg2 >> b;
+
 	double temp;
 	temp = a;
 	for (; temp - 1 >= 0; apow++) temp /= 10;
@@ -30,39 +31,35 @@ int main() {
 	stringstream stga, stgb;
 	stga << a; stgb << b;
 	stga >> str1; stgb >> str2;
-	//cout << a << endl << b << endl;
-	//cout << str1 << endl << str2 << endl;
-	int flag = 0;
+
 	str1[1] = str2[1] = '.';
 	for (int i = 0; i < 2 + sign; i++) {
 		if (!(str1[i] >= '0' && str1[i] <= '9' || str1[i] == '.'))
 		str1[i] = '0';
 		if (!(str2[i] >= '0' && str2[i] <= '9' || str2[i] == '.'))
 		str2[i] = '0';
-		if (str1[i] == str2[i]) flag = 1;
-		else flag = 0;
-		if (flag == 0) break;
 	}
+	cout << str1 << str2 << endl;
 	//cout << flag;
 	//cin  >> flag;
-	if (apow != bpow || flag == 0) {
+	string stra, strb;
+	stra.erase(); strb.erase();
+	for (int i = 0; i < 2 + sign; i++) {
+		stra.push_back(str1[i]);
+	};
+	for (int i = 0; i < 2 + sign; i++) {
+		strb.push_back(str2[i]);
+	}
+	if (apow != bpow || stra != strb ) {
 		cout << "NO ";
 	}
 	else {
 		cout << "YES ";
 	}
-	for (int i = 0; i < 2 + sign; i++) {
-		if (str1[i] >= '0' && str1[i] <= '9' || str1[i] == '.')
-		cout << str1[i];
-		else cout << '0';
-	}
+	cout << stra;
 	cout << "*10^" << apow;
 	cout << " ";
-	for (int i = 0; i < 2 + sign; i++) {
-		if (str2[i] >= '0' && str2[i] <= '9' || str2[i] == '.')
-		cout << str2[i];
-		else cout << '0';
-	}
+	cout << strb;
 	cout << "*10^" << bpow;
 	return 0;
 }
