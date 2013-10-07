@@ -5,11 +5,10 @@ using namespace std;
 int main () {
 	int i;
 	cin >> i;
-	char strg[100];
+	string strg;
 	while (i--) {
 		cin >> strg;
-
-		
+        
 	}
 	return 0;
 }
