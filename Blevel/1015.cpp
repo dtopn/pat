@@ -1,7 +1,6 @@
 #include <iostream>
-#include <vector>
+#include <list>
 #include <algorithm>
-#include <cstdio>
 
 using namespace std;
 
@@ -19,9 +18,6 @@ public: stu(long id, int de, int cai): id(id), de(de), cai(cai) {
 			return true;
 		}
 		friend ostream& operator << (ostream& out, const stu& astu);
-		void print() {
-			printf("%ld %d %d\n",id, de, cai);
-		}
 public: //In order to same time for quick member access, conventional private fields are set to public
 	long id;
 	int de;
@@ -33,11 +29,12 @@ public: //In order to same time for quick member access, conventional private fi
 int stu::num = 0;
 int low, high;
 int main() {
+	ios::sync_with_stdio(false); //faster input and output
 	int i; cin >> i;
 	int de, cai;
 	long id;
 	cin >> low >> high;
-	vector<stu> list1, list2, list3, list4;
+	list<stu> list1, list2, list3, list4;
 	while (i--) {
 		cin >> id >> de >> cai;
 		if (de >= high && cai >= high) list1.push_back(stu(id,de,cai));
@@ -45,16 +42,13 @@ int main() {
 		else if (de >= low && cai >= low && de >= cai) list3.push_back(stu(id,de,cai));
 		else if (de >= low && cai >= low) list4.push_back(stu(id,de,cai));
 	}
-	sort(list1.begin(),list1.end());
-	sort(list2.begin(),list2.end());
-	sort(list3.begin(),list3.end());
-	sort(list4.begin(),list4.end());
-	vector<stu>::reverse_iterator riter;
+	list1.sort(); list2.sort(); list3.sort(); list4.sort();
+	list<stu>::reverse_iterator riter;
 	cout << list1.front().num << endl;
-	for (riter = list1.rbegin(); riter != list1.rend(); ++riter) riter->print();
-	for (riter = list2.rbegin(); riter != list2.rend(); ++riter) riter->print();
-	for (riter = list3.rbegin(); riter != list3.rend(); ++riter) riter->print();
-	for (riter = list4.rbegin(); riter != list4.rend(); ++riter) riter->print();
+	for (riter = list1.rbegin(); riter != list1.rend(); ++riter) cout << *riter;
+	for (riter = list2.rbegin(); riter != list2.rend(); ++riter) cout << *riter;
+	for (riter = list3.rbegin(); riter != list3.rend(); ++riter) cout << *riter;
+	for (riter = list4.rbegin(); riter != list4.rend(); ++riter) cout << *riter;
 	return 0;
 }
 
